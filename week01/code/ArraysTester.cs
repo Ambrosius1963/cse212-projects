@@ -34,12 +34,18 @@ public static class ArraysTester {
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     private static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        Console.WriteLine($"----------------\nMultiples Of: {number}\n");
+        // Create a new list to store the multiples
+        List<double> multiples = new List<double>();
+        // Loop through the range of 1 to length 
+        for (int i = 1; i <= length; i++)
+        {
+        // For each iteration, add the number * the current index to the list
+            multiples.Add(number * i);
+        }
+        // Convert the list to an array and return it
+        return multiples.ToArray();
 
-        return new double[0]; // replace this return statement with your own
     }
     
     /// <summary>
@@ -52,10 +58,25 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Console.WriteLine($"---------------------------------\nRotate List to the Right {amount} time(s).\n");
+        
+        // If the amount is greater than the count of elements or if the list is empty, return without performing any rotation
+        if (data.Count == 0 || amount % data.Count == 0)
+            return;
 
+        // Create a temporary list to store rotated elements
+        List<int> rotatedData = new List<int>();
+        // Calculate the starting index for rotation
+        int startIdx = data.Count - (amount % data.Count);
+        // Add elements from startIdx to the end of the list to rotatedData
+        rotatedData.AddRange(data.GetRange(startIdx, data.Count - startIdx));
+
+        // Add elements from the beginning of the list to startIdx to rotatedData
+        rotatedData.AddRange(data.GetRange(0, startIdx));
+        // Clear the original list
+        data.Clear();
+        // Add rotated elements back to the original list
+        data.AddRange(rotatedData);
     }
+
 }
