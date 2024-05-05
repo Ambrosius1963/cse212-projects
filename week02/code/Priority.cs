@@ -16,7 +16,7 @@
 
         // Defect(s) Found: 
 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 2
         // Scenario: Enqueue multiple items with same priority and dequeue
@@ -28,7 +28,7 @@
         Console.WriteLine(priorityQueue.Dequeue()); 
         Console.WriteLine(priorityQueue.Dequeue()); 
         Console.WriteLine(priorityQueue.Dequeue()); 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 3
         // Scenario: Enqueue multiple items with different priorities and dequeue
@@ -40,7 +40,7 @@
         Console.WriteLine(priorityQueue.Dequeue()); 
         Console.WriteLine(priorityQueue.Dequeue()); 
         Console.WriteLine(priorityQueue.Dequeue()); 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 4
         // Scenario: Dequeue from empty queue
@@ -55,7 +55,7 @@
         {
             Console.WriteLine(ex.Message); // Expected output: "The queue is empty."
         }
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
     }
 }

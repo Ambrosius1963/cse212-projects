@@ -17,7 +17,7 @@
             players.GetNextPerson();
         // Defect(s) Found: The people are taking theirs turns all at once, instead of one at a time
 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 2
         // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3)
@@ -40,7 +40,7 @@
 
         // Defect(s) Found: The people are taking theirs turns all at once, instead of one at a time.
 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 3
         // Scenario: Create a queue with the following people and turns: Bob (2), Tim (Forever), Sue (3)
@@ -58,7 +58,7 @@
         }
         // Defect(s) Found: The people are taking theirs turns all at once, instead of one at a time. and Bob didn't get his turn
 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
          // Test 4
         // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
@@ -75,7 +75,7 @@
         }
         // Defect(s) Found: The people are taking theirs turns all at once and in the wrong order, instead of one at a time
 
-        Console.WriteLine("---------");
+        Console.WriteLine("------------------");
 
         // Test 5
         // Scenario: Try to get the next person from an empty queue
