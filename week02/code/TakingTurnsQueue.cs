@@ -33,14 +33,26 @@ public class TakingTurnsQueue {
         if (_people.IsEmpty())
             Console.WriteLine("No one in the queue.");
         else {
-            Person person = _people.Dequeue();
-            if (person.Turns > 1) {
+        Person person = _people.Dequeue(); // Dequeue the next person
+        Console.WriteLine(person.Name);
+        if (person.Turns > 1 || person.Turns <= 0) { // Modified condition to handle "Forever" scenario
+            if (person.Turns > 0)
                 person.Turns -= 1;
-                _people.Enqueue(person);
-            }
-
-            Console.WriteLine(person.Name);
+            _people.Enqueue(person); // Re-enqueue the person with decreased turns or "Forever"
         }
+    }
+
+        // if (_people.IsEmpty())
+        //     Console.WriteLine("No one in the queue.");
+        // else {
+        //     Person person = _people.Dequeue();
+        //     if (person.Turns > 1 || person.Turns <= 0) {
+        //         person.Turns -= 1;
+        //         _people.Enqueue(person);
+        //     }
+
+        //     Console.WriteLine(person.Name);
+        // }
     }
 
     public override string ToString() {
