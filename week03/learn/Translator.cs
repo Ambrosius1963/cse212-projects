@@ -8,7 +8,7 @@ public class Translator
         englishToGerman.AddWord("Plane", "Flugzeug");
         Console.WriteLine(englishToGerman.Translate("Car")); // Auto
         Console.WriteLine(englishToGerman.Translate("Plane")); // Flugzeug
-        Console.WriteLine(englishToGerman.Translate("Train")); // ???
+        Console.WriteLine(englishToGerman.Translate("Train")); // Word not Found. Translates to Zug
     }
 
     private Dictionary<string, string> _words = new();
@@ -24,7 +24,8 @@ public class Translator
     /// <returns>fixed array of divisors</returns>
     public void AddWord(string fromWord, string toWord)
     {
-        // ADD YOUR CODE HERE
+        // This code will add the translation to the dictionary
+        _words[fromWord] = toWord; // [english] = german
     }
 
     /// <summary>
@@ -34,7 +35,14 @@ public class Translator
     /// <returns>The translated word or "???" if no translation is available</returns>
     public string Translate(string fromWord)
     {
-        // ADD YOUR CODE HERE
-        return "";
+        // will find the key in the dictionary and return the value
+        if (_words.ContainsKey(fromWord))
+        {
+            return _words[fromWord];
+        }
+        else
+        {
+            return "Word Not Found";
+        }
     }
 }

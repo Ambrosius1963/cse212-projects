@@ -24,7 +24,21 @@
 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        return 0;
+        // Goal: Find the first duplicate in the collection
+        // Return the number of duplicates
+        HashSet<int> uniqueSet = new HashSet<int>();
+        int count = 0; // initialize the count of duplicates to 0
+
+        foreach (int num in data)
+        {
+            if (!uniqueSet.Add(num))
+            {
+                count++; // increment the count of duplicates
+                // Console.WriteLine($"Duplicate Nums: {num}");
+            }
+        }
+
+        return count;
+
     }
 }
