@@ -107,10 +107,28 @@ public static class SetsAndMapsTester {
     /// that there were no duplicates) and therefore should not be displayed.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
+    /// #############
+    /// # Problem 1 #
+    /// #############
     private static void DisplayPairs(string[] words) {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+        // Initialize a set to store seen words
+        var seen = new HashSet<string>();
+
+        // Iterate through each word in the input list
+        foreach (var word in words) {
+            // Check if the reverse of the word exists in the seen set
+            var reverse = new string(word.Reverse().ToArray());
+            if (seen.Contains(reverse) && word != reverse) {
+                // Print symmetric pair
+                Console.WriteLine($"{word} & {reverse}");
+            }
+
+            // Add the word to the seen set
+            seen.Add(word);
+        }
     }
 
     /// <summary>
@@ -131,9 +149,14 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+            // Extract degree information from the 4th column (index 3)
+            var degree = fields[3].Trim();
+            if (degrees.ContainsKey(degree)) {
+                degrees[degree]++;
+            } else {
+                degrees[degree] = 1;
+            }
         }
-
         return degrees;
     }
 
@@ -157,9 +180,39 @@ public static class SetsAndMapsTester {
     /// # Problem 3 #
     /// #############
     private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        // Normalize both words to lowercase and remove spaces
+        word1 = word1.ToLower().Replace(" ", "");
+        word2 = word2.ToLower().Replace(" ", "");
+
+        // Check if lengths are equal after removing spaces
+        if (word1.Length != word2.Length)
+            return false;
+
+        // Count occurrences of each character in word1
+        var charCount = new Dictionary<char, int>();
+        foreach (char c in word1) {
+            if (charCount.ContainsKey(c)) {
+                charCount[c]++;
+            } else {
+                charCount[c] = 1;
+            }
+        }
+
+        // Compare counts of characters in word2
+        foreach (char c in word2) {
+            if (!charCount.ContainsKey(c) || charCount[c] == 0) {
+                // Character in word2 not found in word1 or count is zero
+                return false;
+            } else {
+                // Decrement count of character in word1
+                charCount[c]--;
+            }
+        }
+
+        // If all characters in word2 are accounted for in word1, they are anagrams
+        return true;
     }
+
 
     /// <summary>
     /// Sets up the maze dictionary for problem 4
@@ -234,6 +287,12 @@ public static class SetsAndMapsTester {
         // TODO:
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
-        // 2. Add code below to print out each place a earthquake has happened today and its magitude.
+        // 2. Add code below to print out each place a earthquake has happened today and its magnitude.
+        if (featureCollection != null) {
+            foreach (var feature in featureCollection.Features) {
+                Console.WriteLine($"{feature.Properties.Place} - Mag {feature.Properties.Mag}");
+            }
+            // HEY!! It Works! *Celebration Dance*
+        }
     }
 }
